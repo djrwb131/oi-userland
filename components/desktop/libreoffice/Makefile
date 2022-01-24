@@ -19,7 +19,6 @@ include ../../../make-rules/shared-macros.mk
 COMPONENT_NAME=	libreoffice
 COMPONENT_VERSION= 6.4.7
 COMPONENT_RC_VERSION= 2
-COMPONENT_REVISION= 0
 COMPONENT_FULL_VERSION=$(COMPONENT_VERSION).$(COMPONENT_RC_VERSION)
 COMPONENT_SUMMARY= LibreOffice is a powerful office suite
 COMPONENT_PROJECT_URL= https://www.libreoffice.org/
