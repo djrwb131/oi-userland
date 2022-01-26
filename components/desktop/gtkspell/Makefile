@@ -28,20 +28,37 @@ COMPONENT_LICENSE=	GPLv2
 COMPONENT_LICENSE_FILE=	COPYING
 COMPONENT_CLASSIFICATION=	Applications/Accessories
 COMPONENT_FMRI= 	library/desktop/gtkspell
+COMPONENT_ARCHIVE_1 = gtk-doc-1.25.zip
+COMPONENT_ARCHIVE_HASH_1 = sha256:81bf809b1b98a66f7f6583f83755ca8f6376eff7da37d5f3bd863cdbbb13de45
+COMPONENT_ARCHIVE_URL_1 = https://codeload.github.com/GNOME/gtk-doc/zip/refs/tags/GTK_DOC_1_25
 
 include $(WS_MAKE_RULES)/prep.mk
 include $(WS_MAKE_RULES)/configure.mk
 include $(WS_MAKE_RULES)/ips.mk
+include $(WS_MAKE_RULES)/common.mk
 
-PATH=$(PATH.gnu)
+PATH=$(@D)/gtk-doc-1.25/bin:$(PATH.gnu)
+
+# build gtk-doc-1.25 so we can use gtkdoc-mktmpl
+COMPONENT_PRE_CONFIGURE_ACTION.32 = ( \
+	mkdir -p $(@D)/gtk-doc-src && \
+	unzip -qq $(USERLAND_ARCHIVES)/$(COMPONENT_ARCHIVE_1) -d $(@D) ; \
+	cd $(@D)/gtk-doc-GTK_DOC_1_25 && ./autogen.sh --prefix=$(@D)/gtk-doc-1.25; \
+	gmake && gmake install; \
+	cd $(@D)/gtk-doc-1.25; \
+	patch -p1 <  $(COMPONENT_DIR)/files/gtkdoc-relative-install.patch; )
+
+# no need to build the 64-bit version
+COMPONENT_PRE_CONFIGURE_ACTION.64 = ( \
+	ln -s $(@D)/../i86/gtk-doc-1.25 $(@D)/gtk-doc-1.25; )
 
 COMPONENT_PREP_ACTION =	( cd $(@D)  && \
-	libtoolize --copy --force &&\
-	aclocal -I . &&\
-	automake -c -f -a &&\
-	autoconf )
-
-
+	libtoolize --copy --force && \
+	aclocal -I . && \
+	automake -c -f -a && \
+	autoconf ; )
+	
+	
 CONFIGURE_OPTIONS+=	--sysconfdir=/etc
 CONFIGURE_OPTIONS+=	--libexecdir=$(CONFIGURE_LIBDIR.$(BITS))
 CONFIGURE_OPTIONS+=	--disable-static
@@ -58,4 +75,6 @@ REQUIRED_PACKAGES += library/desktop/gtk2
 REQUIRED_PACKAGES += library/glib2
 REQUIRED_PACKAGES += library/spell-checking/enchant
 REQUIRED_PACKAGES += system/library
-REQUIRED_PACKAGES += developer/documentation-tool/gtk-doc
+
+# use downloaded version, so we have gtkdoc-mktmpl
+#REQUIRED_PACKAGES += developer/documentation-tool/gtk-doc

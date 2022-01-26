@@ -1,0 +1,119 @@
+diff -u gtk-doc-1.25/bin/gtkdoc-fixxref new/bin/gtkdoc-fixxref
+--- gtk-doc-1.25/bin/gtkdoc-fixxref	Wed Jan 26 18:08:23 2022
++++ new/bin/gtkdoc-fixxref	Wed Jan 26 18:09:14 2022
+@@ -27,8 +27,9 @@
+ use strict;
+ use bytes;
+ use Getopt::Long;
++use FindBin;
+ 
+-push @INC, '/export/oi-gate/oi-userland/components/desktop/gtkspell/build/i86/gtk-doc-1.25/share/gtk-doc/data';
++push @INC, "$FindBin::RealBin/../share/gtk-doc/data";
+ require "gtkdoc-common.pl";
+ 
+ # Options
+diff -u gtk-doc-1.25/bin/gtkdoc-mkdb new/bin/gtkdoc-mkdb
+--- gtk-doc-1.25/bin/gtkdoc-mkdb	Wed Jan 26 18:08:23 2022
++++ new/bin/gtkdoc-mkdb	Wed Jan 26 18:09:14 2022
+@@ -28,8 +28,9 @@
+ use warnings;
+ use strict;
+ use Getopt::Long;
++use FindBin;
+ 
+-push @INC, '/export/oi-gate/oi-userland/components/desktop/gtkspell/build/i86/gtk-doc-1.25/share/gtk-doc/data';
++push @INC, "$FindBin::RealBin/../share/gtk-doc/data";
+ require "gtkdoc-common.pl";
+ 
+ # Options
+diff -u gtk-doc-1.25/bin/gtkdoc-mkhtml new/bin/gtkdoc-mkhtml
+--- gtk-doc-1.25/bin/gtkdoc-mkhtml	Wed Jan 26 18:08:23 2022
++++ new/bin/gtkdoc-mkhtml	Wed Jan 26 18:09:14 2022
+@@ -62,7 +62,7 @@
+     #echo "uninstalled, gtkdocdir=$gtkdocdir, cwd=$PWD"
+ else
+     # the first two are needed to resolve datadir
+-    prefix=/export/oi-gate/oi-userland/components/desktop/gtkspell/build/i86/gtk-doc-1.25
++    prefix=`dirname $0`/..
+     datarootdir=${prefix}/share
+     gtkdocdir=${datarootdir}/gtk-doc/data
+     styledir=$gtkdocdir
+diff -u gtk-doc-1.25/bin/gtkdoc-mkman new/bin/gtkdoc-mkman
+--- gtk-doc-1.25/bin/gtkdoc-mkman	Wed Jan 26 18:08:23 2022
++++ new/bin/gtkdoc-mkman	Wed Jan 26 18:09:14 2022
+@@ -52,7 +52,7 @@
+     #echo "uninstalled, gtkdocdir=$gtkdocdir"
+ else
+     # the first two are needed to resolve datadir
+-    prefix=/export/oi-gate/oi-userland/components/desktop/gtkspell/build/i86/gtk-doc-1.25
++    prefix=`dirname $0`/..
+     datarootdir=${prefix}/share
+     gtkdocdir=${datarootdir}/gtk-doc/data
+ fi
+diff -u gtk-doc-1.25/bin/gtkdoc-mkpdf new/bin/gtkdoc-mkpdf
+--- gtk-doc-1.25/bin/gtkdoc-mkpdf	Wed Jan 26 18:08:23 2022
++++ new/bin/gtkdoc-mkpdf	Wed Jan 26 18:09:14 2022
+@@ -64,7 +64,8 @@
+       #echo "uninstalled, gtkdocdir=$gtkdocdir"
+ else
+       # the first two are needed to resolve datadir
+-      prefix=/export/oi-gate/oi-userland/components/desktop/gtkspell/build/i86/gtk-doc-1.25
++      use FindBin;
++      prefix=`dirname $0`/..
+       datarootdir=${prefix}/share
+       gtkdocdir=${datarootdir}/gtk-doc/data
+ fi
+diff -u gtk-doc-1.25/bin/gtkdoc-mktmpl new/bin/gtkdoc-mktmpl
+--- gtk-doc-1.25/bin/gtkdoc-mktmpl	Wed Jan 26 18:08:23 2022
++++ new/bin/gtkdoc-mktmpl	Wed Jan 26 18:09:14 2022
+@@ -53,8 +53,9 @@
+ 
+ use strict;
+ use Getopt::Long;
++use FindBin;
+ 
+-push @INC, '/export/oi-gate/oi-userland/components/desktop/gtkspell/build/i86/gtk-doc-1.25/share/gtk-doc/data';
++push @INC, "$FindBin::RealBin/../share/gtk-doc/data";
+ require "gtkdoc-common.pl";
+ 
+ # Options
+diff -u gtk-doc-1.25/bin/gtkdoc-scan new/bin/gtkdoc-scan
+--- gtk-doc-1.25/bin/gtkdoc-scan	Wed Jan 26 18:08:23 2022
++++ new/bin/gtkdoc-scan	Wed Jan 26 18:09:14 2022
+@@ -39,8 +39,9 @@
+ use strict;
+ use Getopt::Long;
+ use Cwd qw(realpath);
++use FindBin;
+ 
+-push @INC, '/export/oi-gate/oi-userland/components/desktop/gtkspell/build/i86/gtk-doc-1.25/share/gtk-doc/data';
++push @INC, "$FindBin::RealBin/../share/gtk-doc/data";
+ require "gtkdoc-common.pl";
+ 
+ # Options
+diff -u gtk-doc-1.25/bin/gtkdoc-scangobj new/bin/gtkdoc-scangobj
+--- gtk-doc-1.25/bin/gtkdoc-scangobj	Wed Jan 26 18:08:23 2022
++++ new/bin/gtkdoc-scangobj	Wed Jan 26 18:09:14 2022
+@@ -27,8 +27,9 @@
+ 
+ use strict;
+ use Getopt::Long;
++use FindBin;
+ 
+-push @INC, '/export/oi-gate/oi-userland/components/desktop/gtkspell/build/i86/gtk-doc-1.25/share/gtk-doc/data';
++push @INC, "$FindBin::RealBin/../share/gtk-doc/data";
+ require "gtkdoc-common.pl";
+ 
+ # Options
+diff -u gtk-doc-1.25/bin/gtkdocize new/bin/gtkdocize
+--- gtk-doc-1.25/bin/gtkdocize	Wed Jan 26 18:08:23 2022
++++ new/bin/gtkdocize	Wed Jan 26 18:09:14 2022
+@@ -6,7 +6,7 @@
+ PACKAGE=gtk-doc
+ VERSION=1.25
+ 
+-prefix=/export/oi-gate/oi-userland/components/desktop/gtkspell/build/i86/gtk-doc-1.25
++prefix=`dirname $0`/..
+ datarootdir=${prefix}/share
+ datadir=${datarootdir}
+ 
