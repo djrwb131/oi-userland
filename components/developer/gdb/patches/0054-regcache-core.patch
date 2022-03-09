@@ -1,0 +1,12 @@
+
+--- gdb-8.0-orig/gdb/regcache.h	2017-06-04 08:54:54.000000000 -0700
++++ gdb-8.0/gdb/regcache.h	2017-07-11 15:56:42.826460635 -0700
+@@ -242,4 +242,7 @@ extern void regcache_debug_print_registe
+ 					   struct regcache *regcache,
+ 					   int regno);
+ 
++extern int set_regcache_from_corefile (struct regcache *regcache);
++extern int regcache_from_corefile (const struct regcache *regcache);
++
+ #endif /* REGCACHE_H */
+

@@ -1,0 +1,40 @@
+
+--- gdb-8.0-orig/gdb/regcache.c	2017-06-04 08:54:54.000000000 -0700
++++ gdb-8.0/gdb/regcache.c	2017-07-11 16:01:53.975416470 -0700
+@@ -213,6 +213,8 @@ struct regcache
+   /* If this is a read-write cache, which thread's registers is
+      it connected to?  */
+   ptid_t ptid;
++  /* Is this a corefile regcache or a live process */
++  int from_corefile;
+ };
+ 
+ /* See regcache.h.  */
+@@ -237,6 +239,7 @@ regcache_xmalloc_1 (struct gdbarch *gdba
+   regcache = XNEW (struct regcache);
+   regcache->descr = descr;
+   regcache->readonly_p = readonly_p;
++  regcache->from_corefile = 0;
+   if (readonly_p)
+     {
+       regcache->registers
+@@ -1620,3 +1623,18 @@ Takes an optional file parameter."),
+ 	   &maintenanceprintlist);
+ 
+ }
++
++int
++set_regcache_from_corefile (struct regcache *regcache)
++{
++  gdb_assert (regcache != NULL);
++  regcache->from_corefile = 1;
++}
++
++int
++regcache_from_corefile (const struct regcache *regcache)
++{
++  gdb_assert (regcache != NULL);
++  return regcache->from_corefile;
++}
++
+
