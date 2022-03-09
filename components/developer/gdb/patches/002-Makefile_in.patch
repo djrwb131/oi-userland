@@ -29,11 +29,11 @@
  ENABLE_CFLAGS = @ENABLE_CFLAGS@
  CONFIG_ALL = @CONFIG_ALL@
  CONFIG_CLEAN = @CONFIG_CLEAN@
-@@ -1817,7 +1817,7 @@ COMMON_OBS = $(DEPFILES) $(CONFIG_OBS) $
+@@ -1592,7 +1592,7 @@
+ 	$(SUBDIR_TARGET_OBS) \
+ 	$(SUBDIR_GCC_COMPILE_OBS)
  
- TSOBS = inflow.o
- 
--SUBDIRS = doc @subdirs@ data-directory $(GNULIB_BUILDDIR)
+-SUBDIRS = doc @subdirs@ data-directory
 +SUBDIRS = @subdirs@ data-directory $(GNULIB_BUILDDIR)
  CLEANDIRS = $(SUBDIRS)
  

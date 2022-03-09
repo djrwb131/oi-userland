@@ -34,14 +34,14 @@ BUILD_BITS= 64
 include ../../../make-rules/shared-macros.mk
 
 COMPONENT_NAME=		gdb
-COMPONENT_VERSION=	8.0
+COMPONENT_VERSION=	11.2
 # COMPONENT_REVISION=	0
 COMPONENT_SUMMARY=	GDB: The GNU Project Debugger
 COMPONENT_CLASSIFICATION=Development/System
 COMPONENT_SRC=		$(COMPONENT_NAME)-$(COMPONENT_VERSION)
-COMPONENT_ARCHIVE=	$(COMPONENT_SRC).tar.gz
+COMPONENT_ARCHIVE=	$(COMPONENT_SRC).tar.xz
 COMPONENT_ARCHIVE_HASH=	\
-     sha256:8968a19e14e176ee026f0ca777657c43456514ad41bb2bc7273e8c4219555ac9
+     sha256:1497c36a71881b8671a9a84a0ee40faab788ca30d7ba19d8463c3cc787152e32
 COMPONENT_ARCHIVE_URL=	https://ftp.gnu.org/gnu/gdb/$(COMPONENT_ARCHIVE)
 COMPONENT_PROJECT_URL=	https://www.gnu.org/software/gdb/
 
@@ -143,7 +143,7 @@ COMPONENT_POST_BUILD_ACTION = \
 
 # Two tests hangs up the test run, so skip them.
 COMPONENT_PRE_TEST_ACTION += \
-  ( cd $(SOURCE_DIR)/gdb/testsuite; \
+  ( echo "TESTING NOW"; cd $(SOURCE_DIR)/gdb/testsuite; \
     for F in gdb.mi/mi-exec-run.exp gdb.base/annota3.exp; \
     do \
       if test -e $$F; \
@@ -153,14 +153,10 @@ COMPONENT_PRE_TEST_ACTION += \
     done )
 
 COMPONENT_POST_INSTALL_ACTION = \
-  ( cd  $(PROTOUSRDIR)/share/gdb/python/gdb ; \
-      $(PYTHON) -m compileall . ; \
-    cd  $(PROTOUSRDIR)/share/gdb/python/gdb/command ; \
-      $(PYTHON) -m compileall . ; \
-    cd  $(PROTOUSRDIR)/share/gdb/python/gdb/function ; \
+  ( cd  $(PROTOUSRDIR)/share/gdb/python ; \
       $(PYTHON) -m compileall . ; \
     cd  $(PROTOUSRBINDIR)/ ; \
-      /usr/bin/strip -x gdb ; \
+      /usr/bin/strip -x gdb ;  \
     cd  $(COMPONENT_DIR) ; \
       $(INSTALL) -m 0755 $(COMPONENT_DIR)/Solaris/gdbtui \
 	$(PROTOUSRBINDIR)/ ; \
@@ -186,7 +182,7 @@ COMPONENT_POST_INSTALL_ACTION = \
 	$(PROTOUSRSHAREDIR)/info/ ; \
       $(MKDIR) $(PROTOGNUSHAREMAN1) ; \
       $(MKDIR) $(PROTOUSRSHAREMAN1DIR) ; \
-      $(INSTALL) -m 0444 $(BUILD_DIR_64)/gdb/doc/gdb.1 \
+      $(INSTALL) -m 0444 $(SOURCE_DIR)/gdb/doc/gdb.1 \
 	$(PROTOUSRSHAREMAN1DIR) )
 
 # Disable ASLR: it's a debugger and we do not want to risk
@@ -201,6 +197,8 @@ REQUIRED_PACKAGES += library/expat
 REQUIRED_PACKAGES += library/ncurses
 REQUIRED_PACKAGES += library/readline
 REQUIRED_PACKAGES += library/zlib
+REQUIRED_PACKAGES += library/gmp
+REQUIRED_PACKAGES += library/mpfr
 REQUIRED_PACKAGES += runtime/python-37
 REQUIRED_PACKAGES += shell/ksh93
 REQUIRED_PACKAGES += system/library/g++-7-runtime

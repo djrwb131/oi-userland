@@ -4,6 +4,8 @@
         "compress/xz",
         "developer/babeltrace",
         "library/expat",
+        "library/gmp",
+        "library/mpfr",
         "library/ncurses",
         "library/readline",
         "library/zlib",
