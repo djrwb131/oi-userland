@@ -15,14 +15,13 @@
 include ../../../make-rules/shared-macros.mk
 
 COMPONENT_NAME=		usocket
-COMPONENT_VERSION=	0.6.1
+COMPONENT_VERSION=	0.8.4
 COMPONENT_PROJECT_URL=	http://common-lisp.net/project/usocket/
 COMPONENT_FMRI=		library/common-lisp/usocket
 COMPONENT_SRC=		$(COMPONENT_NAME)-$(COMPONENT_VERSION)
 COMPONENT_ARCHIVE=	$(COMPONENT_SRC).tar.gz
-COMPONENT_ARCHIVE_HASH=	\
-	sha256:ea64803e15b4197a25e3d0354091dc5590debd7e461a6b8b8f40f0822295d0d2
-COMPONENT_ARCHIVE_URL=	http://common-lisp.net/project/usocket/releases/$(COMPONENT_ARCHIVE)
+COMPONENT_ARCHIVE_URL=	https://common-lisp.net/project/usocket/releases/$(COMPONENT_ARCHIVE)
+COMPONENT_SIG_URL=	$(COMPONENT_ARCHIVE_URL).asc
 COMPONENT_LICENSE=	MIT
 COMPONENT_LICENSE_FILE=	$(COMPONENT_NAME).license
 COMPONENT_SUMMARY=	A portable TCP/IP and UDP/IP socket interface for Common Lisp
