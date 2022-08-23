@@ -15,14 +15,15 @@
 include ../../../make-rules/shared-macros.mk
 
 COMPONENT_NAME=		nibbles
-COMPONENT_VERSION=	0.11
+COMPONENT_VERSION=	0.13
 COMPONENT_PROJECT_URL=	http://method-combination.net/lisp/nibbles/
 COMPONENT_FMRI=		library/common-lisp/nibbles
-COMPONENT_SRC=		$(COMPONENT_NAME)_$(COMPONENT_VERSION)
+COMPONENT_SRC=		$(COMPONENT_NAME)-$(COMPONENT_VERSION)
 COMPONENT_ARCHIVE=	$(COMPONENT_SRC).tar.gz
 COMPONENT_ARCHIVE_HASH=	\
-	sha256:f29aea6b5ab9e2bb4267d7babb5c70005a3d4bd540044117f3e7c0a4b7ea7382
-COMPONENT_ARCHIVE_URL=	http://www.method-combination.net/lisp/files/$(COMPONENT_ARCHIVE)
+	sha256:45116a0102240c010eee55aced35580ed8466cc522f6a80afaceea32027036f1
+#COMPONENT_ARCHIVE_URL=	http://www.method-combination.net/lisp/files/$(COMPONENT_ARCHIVE)
+COMPONENT_ARCHIVE_URL=	https://github.com/froydnj/$(COMPONENT_NAME)/archive/refs/tags/v$(COMPONENT_VERSION).tar.gz
 COMPONENT_LICENSE=	MIT-like
 COMPONENT_LICENSE_FILE=	$(COMPONENT_NAME).license
 COMPONENT_SUMMARY=	nibbles is a library for accessing multibyte integers from octet arrays and streams
