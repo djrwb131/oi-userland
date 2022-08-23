@@ -1,48 +1,44 @@
 #
 # This file and its contents are supplied under the terms of the
-# Common Development and Distribution License ("CDDL"). You may
-# only use this file in accordance with the terms of the CDDL.
+# Common Development and Distribution License ("CDDL"), version 1.0.
+# You may only use this file in accordance with the terms of version
+# 1.0 of the CDDL.
 #
 # A full copy of the text of the CDDL should have accompanied this
-# source. A copy of the CDDL is also available via the Internet at
+# source.  A copy of the CDDL is also available via the Internet at
 # http://www.illumos.org/license/CDDL.
 #
 
 #
-# Copyright 2014 Josef 'Jeff' Sipek <jeffpc@josefsipek.net>
+# Copyright 2022 <contributor>
 #
 
 set name=pkg.fmri value=pkg:/$(COMPONENT_FMRI)@$(IPS_COMPONENT_VERSION),$(BUILD_VERSION)
+set name=pkg.human-version value=$(HUMAN_VERSION)
 set name=pkg.summary value="$(COMPONENT_SUMMARY)"
+set name=info.classification value="$(COMPONENT_CLASSIFICATION)"
 set name=info.upstream-url value=$(COMPONENT_PROJECT_URL)
 set name=info.source-url value=$(COMPONENT_ARCHIVE_URL)
 set name=org.opensolaris.consolidation value=$(CONSOLIDATION)
-set name=info.classification value="org.opensolaris.category.2008:Development/Other Languages"
 
 license $(COMPONENT_LICENSE_FILE) license='$(COMPONENT_LICENSE)'
 
-depend fmri=library/common-lisp/nibbles type=require
-
-dir  path=usr
-dir  path=usr/share
-dir  path=usr/share/common-lisp
-dir  path=usr/share/common-lisp/source
-dir  path=usr/share/common-lisp/source/ironclad
 file path=usr/share/common-lisp/source/ironclad/LICENSE
 file path=usr/share/common-lisp/source/ironclad/NEWS
 file path=usr/share/common-lisp/source/ironclad/README
 file path=usr/share/common-lisp/source/ironclad/TODO
-dir  path=usr/share/common-lisp/source/ironclad/doc
+file path=usr/share/common-lisp/source/ironclad/doc/fluff.html
+file path=usr/share/common-lisp/source/ironclad/doc/index.html
 file path=usr/share/common-lisp/source/ironclad/doc/ironclad-doc.txt
 file path=usr/share/common-lisp/source/ironclad/doc/ironclad.html
 file path=usr/share/common-lisp/source/ironclad/doc/style.css
+file path=usr/share/common-lisp/source/ironclad/ironclad-text.asd
 file path=usr/share/common-lisp/source/ironclad/ironclad.asd
-dir  path=usr/share/common-lisp/source/ironclad/src
-dir  path=usr/share/common-lisp/source/ironclad/src/ciphers
 file path=usr/share/common-lisp/source/ironclad/src/ciphers/aes.lisp
 file path=usr/share/common-lisp/source/ironclad/src/ciphers/arcfour.lisp
 file path=usr/share/common-lisp/source/ironclad/src/ciphers/blowfish.lisp
 file path=usr/share/common-lisp/source/ironclad/src/ciphers/cast5.lisp
+file path=usr/share/common-lisp/source/ironclad/src/ciphers/chacha.lisp
 file path=usr/share/common-lisp/source/ironclad/src/ciphers/cipher.lisp
 file path=usr/share/common-lisp/source/ironclad/src/ciphers/des.lisp
 file path=usr/share/common-lisp/source/ironclad/src/ciphers/idea.lisp
@@ -53,14 +49,18 @@ file path=usr/share/common-lisp/source/ironclad/src/ciphers/null-cipher.lisp
 file path=usr/share/common-lisp/source/ironclad/src/ciphers/rc2.lisp
 file path=usr/share/common-lisp/source/ironclad/src/ciphers/rc5.lisp
 file path=usr/share/common-lisp/source/ironclad/src/ciphers/rc6.lisp
+file path=usr/share/common-lisp/source/ironclad/src/ciphers/salsa20.lisp
+file path=usr/share/common-lisp/source/ironclad/src/ciphers/serpent.lisp
 file path=usr/share/common-lisp/source/ironclad/src/ciphers/square.lisp
 file path=usr/share/common-lisp/source/ironclad/src/ciphers/tea.lisp
+file path=usr/share/common-lisp/source/ironclad/src/ciphers/threefish.lisp
 file path=usr/share/common-lisp/source/ironclad/src/ciphers/twofish.lisp
 file path=usr/share/common-lisp/source/ironclad/src/ciphers/xtea.lisp
 file path=usr/share/common-lisp/source/ironclad/src/common.lisp
 file path=usr/share/common-lisp/source/ironclad/src/conditions.lisp
-dir  path=usr/share/common-lisp/source/ironclad/src/digests
 file path=usr/share/common-lisp/source/ironclad/src/digests/adler32.lisp
+file path=usr/share/common-lisp/source/ironclad/src/digests/blake2.lisp
+file path=usr/share/common-lisp/source/ironclad/src/digests/blake2s.lisp
 file path=usr/share/common-lisp/source/ironclad/src/digests/crc24.lisp
 file path=usr/share/common-lisp/source/ironclad/src/digests/crc32.lisp
 file path=usr/share/common-lisp/source/ironclad/src/digests/digest.lisp
@@ -72,46 +72,59 @@ file path=usr/share/common-lisp/source/ironclad/src/digests/ripemd-128.lisp
 file path=usr/share/common-lisp/source/ironclad/src/digests/ripemd-160.lisp
 file path=usr/share/common-lisp/source/ironclad/src/digests/sha1.lisp
 file path=usr/share/common-lisp/source/ironclad/src/digests/sha256.lisp
+file path=usr/share/common-lisp/source/ironclad/src/digests/sha3.lisp
 file path=usr/share/common-lisp/source/ironclad/src/digests/sha512.lisp
+file path=usr/share/common-lisp/source/ironclad/src/digests/skein.lisp
 file path=usr/share/common-lisp/source/ironclad/src/digests/tiger.lisp
 file path=usr/share/common-lisp/source/ironclad/src/digests/tree-hash.lisp
 file path=usr/share/common-lisp/source/ironclad/src/digests/whirlpool.lisp
 file path=usr/share/common-lisp/source/ironclad/src/kdf-common.lisp
 file path=usr/share/common-lisp/source/ironclad/src/macro-utils.lisp
-dir  path=usr/share/common-lisp/source/ironclad/src/macs
 file path=usr/share/common-lisp/source/ironclad/src/macs/cmac.lisp
 file path=usr/share/common-lisp/source/ironclad/src/macs/hmac.lisp
+file path=usr/share/common-lisp/source/ironclad/src/macs/poly1305.lisp
+file path=usr/share/common-lisp/source/ironclad/src/macs/skein-mac.lisp
 file path=usr/share/common-lisp/source/ironclad/src/math.lisp
 file path=usr/share/common-lisp/source/ironclad/src/octet-stream.lisp
 file path=usr/share/common-lisp/source/ironclad/src/package.lisp
 file path=usr/share/common-lisp/source/ironclad/src/padding.lisp
 file path=usr/share/common-lisp/source/ironclad/src/password-hash.lisp
 file path=usr/share/common-lisp/source/ironclad/src/pkcs5.lisp
-dir  path=usr/share/common-lisp/source/ironclad/src/prng
 file path=usr/share/common-lisp/source/ironclad/src/prng/fortuna.lisp
 file path=usr/share/common-lisp/source/ironclad/src/prng/generator.lisp
 file path=usr/share/common-lisp/source/ironclad/src/prng/prng.lisp
-dir  path=usr/share/common-lisp/source/ironclad/src/public-key
 file path=usr/share/common-lisp/source/ironclad/src/public-key/dsa.lisp
+file path=usr/share/common-lisp/source/ironclad/src/public-key/ed25519.lisp
+file path=usr/share/common-lisp/source/ironclad/src/public-key/elgamal.lisp
+file path=usr/share/common-lisp/source/ironclad/src/public-key/pkcs1.lisp
 file path=usr/share/common-lisp/source/ironclad/src/public-key/public-key.lisp
 file path=usr/share/common-lisp/source/ironclad/src/public-key/rsa.lisp
-dir  path=usr/share/common-lisp/source/ironclad/src/sbcl-opt
 file path=usr/share/common-lisp/source/ironclad/src/sbcl-opt/fndb.lisp
 file path=usr/share/common-lisp/source/ironclad/src/sbcl-opt/x86oid-vm.lisp
 file path=usr/share/common-lisp/source/ironclad/src/scrypt.lisp
+file path=usr/share/common-lisp/source/ironclad/src/text.lisp
 file path=usr/share/common-lisp/source/ironclad/src/util.lisp
-dir  path=usr/share/common-lisp/source/ironclad/testing
 file path=usr/share/common-lisp/source/ironclad/testing/rt.lisp
-dir  path=usr/share/common-lisp/source/ironclad/testing/test-vectors
 file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/3des.testvec
 file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/adler32.testvec
 file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/aes.testvec
 file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/arcfour.testvec
+file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/blake2-160.testvec
+file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/blake2-256.testvec
+file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/blake2-384.testvec
+file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/blake2.testvec
+file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/blake2s-128.testvec
+file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/blake2s-160.testvec
+file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/blake2s-224.testvec
+file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/blake2s.testvec
 file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/blowfish.testvec
 file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/cast5.testvec
 file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/cbc.testvec
 file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/cfb.testvec
 file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/cfb8.testvec
+file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/chacha-12.testvec
+file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/chacha-8.testvec
+file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/chacha.testvec
 file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/ciphers.lisp
 file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/cmac.testvec
 file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/crc24.testvec
@@ -119,6 +132,10 @@ file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/crc32.testv
 file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/ctr.testvec
 file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/des.testvec
 file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/digests.lisp
+file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/dsa.testvec
+file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/ed25519.testvec
+file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/elgamal-enc.testvec
+file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/elgamal-sig.testvec
 file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/hmac.testvec
 file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/idea.testvec
 file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/ironclad.lisp
@@ -132,26 +149,57 @@ file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/null.testve
 file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/ofb.testvec
 file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/padding.lisp
 file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/pkcs5.lisp
-file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/prng.lisp
+file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/poly1305.testvec
+file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/prng-tests.lisp
+file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/prng.testvec
+file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/public-key.lisp
 file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/rc2.testvec
 file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/rc5.testvec
 file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/rc6.testvec
 file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/ripemd-128.testvec
 file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/ripemd-160.testvec
+file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/rsa-enc.testvec
+file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/rsa-sig.testvec
+file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/salsa20-12.testvec
+file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/salsa20-8.testvec
+file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/salsa20.testvec
 file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/scrypt.lisp
+file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/serpent.testvec
 file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/sha1.testvec
 file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/sha224.testvec
 file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/sha256.testvec
+file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/sha3-224.testvec
+file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/sha3-256.testvec
+file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/sha3-384.testvec
+file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/sha3.testvec
 file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/sha384.testvec
 file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/sha512.testvec
+file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/shake128.testvec
+file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/shake256.testvec
+file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/skein-mac.testvec
+file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/skein1024-384.testvec
+file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/skein1024-512.testvec
+file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/skein1024.testvec
+file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/skein256-128.testvec
+file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/skein256-160.testvec
+file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/skein256-224.testvec
+file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/skein256.testvec
+file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/skein512-128.testvec
+file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/skein512-160.testvec
+file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/skein512-224.testvec
+file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/skein512-256.testvec
+file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/skein512-384.testvec
+file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/skein512.testvec
 file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/square.testvec
 file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/tea.testvec
+file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/threefish1024.testvec
+file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/threefish256.testvec
+file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/threefish512.testvec
 file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/tiger.testvec
 file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/tree-hash.testvec
 file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/twofish.testvec
 file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/whirlpool.testvec
 file path=usr/share/common-lisp/source/ironclad/testing/test-vectors/xtea.testvec
 file path=usr/share/common-lisp/source/ironclad/testing/testfuns.lisp
-dir  path=usr/share/common-lisp/systems
 link path=usr/share/common-lisp/systems/ironclad.asd \
     target=../source/ironclad/ironclad.asd

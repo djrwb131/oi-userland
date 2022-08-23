@@ -15,14 +15,15 @@
 include ../../../make-rules/shared-macros.mk
 
 COMPONENT_NAME=		ironclad
-COMPONENT_VERSION=	0.32.1
+COMPONENT_VERSION=	0.34
 COMPONENT_PROJECT_URL=	http://method-combination.net/lisp/ironclad/
 COMPONENT_FMRI=		library/common-lisp/ironclad
-COMPONENT_SRC=		$(COMPONENT_NAME)_$(COMPONENT_VERSION)
-COMPONENT_ARCHIVE=	$(COMPONENT_SRC).tar.gz
+COMPONENT_SRC=		$(COMPONENT_NAME)-$(COMPONENT_VERSION)
+COMPONENT_ARCHIVE=	ironclad-v$(COMPONENT_VERSION).tar.gz
+#COMPONENT_ARCHIVE_URL=	http://www.method-combination.net/lisp/files/$(COMPONENT_ARCHIVE)
+COMPONENT_ARCHIVE_URL=	https://github.com/froydnj/$(COMPONENT_NAME)/archive/refs/tags/v$(COMPONENT_VERSION).tar.gz
 COMPONENT_ARCHIVE_HASH=	\
-	sha256:980be839491e773b96ac51d36b5fa8bb67ea0528f55554c51a6dcbef8a009e18
-COMPONENT_ARCHIVE_URL=	http://www.method-combination.net/lisp/files/$(COMPONENT_ARCHIVE)
+	sha256:7b029e2868a742c1ffacc390669450264479e83bf5843e13a2b44bb37b43515a
 COMPONENT_LICENSE=	MIT-like
 COMPONENT_LICENSE_FILE=	$(COMPONENT_NAME).license
 COMPONENT_SUMMARY=	Ironclad is a cryptography library written entirely in Common Lisp
